@@ -1,5 +1,5 @@
 apps:
   - name: http-reverse-proxy
-    script: artisan
+    script: node index.js
     exec_mode: cluster
     instances: 1
