@@ -8,10 +8,11 @@ console.log(new Date, '[SERVER] Started');
 let server = http.createServer((req, res) => {
   let host = req.headers.host;
 
-  // res.header("Access-Control-Allow-Origin", "*");
-  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
   if (config[host]) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    res.setHeader('Access-Control-Max-Age', 2592000);
+
     console.log(new Date, `[REQUEST] Proxied from ${host} to ${config[host]}`);
     return proxy.web(req, res, {
       target: `http://localhost:${config[host]}`,
@@ -29,3 +30,8 @@ proxy.on('error', (err, req, res) => {
   res.statusCode = 404;
   res.end();
 });
+
+// let mock = http.createServer((req, res) => {
+//   res.write('ok');
+//   res.end();
+// }).listen(3030);
