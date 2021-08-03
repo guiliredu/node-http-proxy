@@ -8,8 +8,8 @@ console.log(new Date, '[SERVER] Started');
 let server = http.createServer((req, res) => {
   let host = req.headers.host;
 
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   if (config[host]) {
     console.log(new Date, `[REQUEST] Proxied from ${host} to ${config[host]}`);
