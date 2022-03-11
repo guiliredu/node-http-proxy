@@ -10,7 +10,8 @@ let server = http.createServer((req, res) => {
 
   if (config[host]) {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
     res.setHeader('Access-Control-Max-Age', 2592000);
 
     console.log(new Date, `[REQUEST] Proxied from ${host} to ${config[host]}`);
